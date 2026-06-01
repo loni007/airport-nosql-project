@@ -6,7 +6,6 @@ This project migrates a SQL Server Airport Management System database to MongoDB
 
 Phase 1 is complete: relational design, MongoDB modeling strategy, and project architecture.
 
-The plan has been checked against the provided course requirements PDF. The project will explicitly include the required report sections, GitHub version control, idempotent rerun demo, validation report, visualization screenshots, and comparison with two alternative NoSQL database families.
 
 ## Phase 1 Documents
 
