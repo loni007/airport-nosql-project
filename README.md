@@ -12,6 +12,8 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 - `docs/er_diagram.md`: relational entity design, constraints, cardinalities, and Mermaid ER diagram.
 - `docs/mongodb_model.md`: MongoDB collections, embedding/reference strategy, derived fields, indexes, and idempotency rules.
 - `docs/project_architecture.md`: phased implementation plan, target structure, runtime components, and configuration plan.
+- `docs/screenshot_checklist.md`: exact screenshots and demo evidence to capture for the report and presentation.
+- `docs/team_split.md`: 50/50 team responsibility split for a two-student submission.
 
 ## Planned Workflow
 
