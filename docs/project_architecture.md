@@ -4,6 +4,8 @@
 
 This repository implements a SQL Server to MongoDB migration for an Airport Management System. The work is divided into phases so each stage is independently reviewable and testable.
 
+The implementation is aligned with the course PDF requirements for a relational-to-NoSQL migration project: relational modeling, NoSQL justification, non-trivial transformation, idempotent migration, validation, visualization, documentation, and a presentation-ready demo.
+
 ## Target Directory Structure
 
 ```text
@@ -50,6 +52,21 @@ The current repository root is used as the project root rather than nesting anot
 | 10 | Documentation | README and report are complete |
 | 11 | Docker support | SQL Server and MongoDB start through Compose |
 | 12 | Final review | Full workflow runs cleanly from setup to validation |
+
+## Grading-Oriented Deliverables
+
+| Deliverable | Repository Artifact |
+| --- | --- |
+| Project report | `docs/report.md` |
+| ER diagram and relational explanation | `docs/er_diagram.md`, `sql/schema.sql` |
+| Populated relational database evidence | Report screenshots and record-count outputs |
+| NoSQL database choice and alternatives | `docs/report.md`, `docs/mongodb_model.md` |
+| Alternative NoSQL sketch | Report section comparing MongoDB with Redis and Neo4j, including one alternate schema sketch |
+| Migration code and transformations | `migration/` |
+| Validation report | `validation/` output and report summary |
+| Visualization screenshots | `visualization/` outputs and report screenshots |
+| Setup and run instructions | `README.md`, `docker-compose.yml` |
+| Presentation readiness | Final demo checklist in `docs/report.md` |
 
 ## Runtime Components
 
@@ -110,3 +127,5 @@ Development defaults will match `docker-compose.yml` once Docker support is adde
 - Logging must be explicit enough to explain skipped rows and failed connections.
 - Validation must fail loudly when derived fields drift from SQL source data.
 - Documentation must describe commands, expected output, and project assumptions.
+- Final documentation must include screenshots or captured outputs for relational record counts, validation results, and visualizations.
+- The final demo must show migration rerun idempotency, validation, and visualization reading from MongoDB.

@@ -6,6 +6,8 @@ This project migrates a SQL Server Airport Management System database to MongoDB
 
 Phase 1 is complete: relational design, MongoDB modeling strategy, and project architecture.
 
+The plan has been checked against the provided course requirements PDF. The project will explicitly include the required report sections, GitHub version control, idempotent rerun demo, validation report, visualization screenshots, and comparison with two alternative NoSQL database families.
+
 ## Phase 1 Documents
 
 - `docs/er_diagram.md`: relational entity design, constraints, cardinalities, and Mermaid ER diagram.
@@ -20,6 +22,17 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 4. Implement idempotent migration with transformations.
 5. Add logging, error handling, validation, and visualizations.
 6. Complete Docker support and final report.
+
+## Course Deliverable Checklist
+
+- Relational database with ER diagram, constraints, and 10,000+ records in at least one table.
+- MongoDB model with documented embedding and referencing decisions.
+- Programmatic migration with non-1:1 transformations and derived fields.
+- Idempotent migration that can be rerun without duplicates.
+- Explicit error handling for malformed source records and connection failures.
+- Automated validation with counts, checksums, aggregation checks, and spot checks.
+- Three MongoDB-only visualizations.
+- Final report, screenshots, README instructions, and presentation-ready demo.
 
 ## Requirements
 
