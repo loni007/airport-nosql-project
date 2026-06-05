@@ -14,6 +14,8 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 - `docs/project_architecture.md`: phased implementation plan, target structure, runtime components, and configuration plan.
 - `docs/screenshot_checklist.md`: exact screenshots and demo evidence to capture for the report and presentation.
 - `docs/team_split.md`: 50/50 team responsibility split for a two-student submission.
+- `mongodb/setup_collections.py`: MongoDB collection and index setup script with dry-run support.
+- `mongodb/README.md`: MongoDB setup commands and index explanation.
 
 ## Planned Workflow
 

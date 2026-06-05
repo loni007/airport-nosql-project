@@ -181,6 +181,8 @@ The MongoDB design is optimized for reporting, validation, and visualization rat
 | `reservations` | `agency.sql_agency_id` | Agency analytics |
 | `maintenance` | Unique `sql_care_id` | Idempotent upserts |
 
+The runnable Phase 4 index setup is implemented in `mongodb/setup_collections.py`. Use `--dry-run` to inspect the collection and index plan without a MongoDB server.
+
 ## Idempotency Rules
 
 - Migration scripts will use `replace_one(..., upsert=True)` or bulk upserts keyed by SQL primary keys.
