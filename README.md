@@ -16,6 +16,8 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 - `docs/team_split.md`: 50/50 team responsibility split for a two-student submission.
 - `mongodb/setup_collections.py`: MongoDB collection and index setup script with dry-run support.
 - `mongodb/README.md`: MongoDB setup commands and index explanation.
+- `migration/migrate.py`: migration pipeline entry point.
+- `migration/README.md`: migration configuration and run instructions.
 
 ## Planned Workflow
 
