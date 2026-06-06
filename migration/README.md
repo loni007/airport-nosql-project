@@ -14,6 +14,21 @@ Phase 5 provides a runnable migration skeleton:
 
 The actual data transformation and collection upserts are added in later phases.
 
+## Phase 7 Logging and Error Handling
+
+Phase 7 adds:
+
+- Console and file logging through `migration/logger.py`.
+- Explicit database connection failure handling.
+- Explicit malformed source record validation helpers.
+- A standalone error scenario demo script.
+
+Logs are written to:
+
+```text
+logs/migration.log
+```
+
 ## Environment Variables
 
 | Variable | Default |
@@ -52,3 +67,20 @@ Demonstrate idempotent metadata upsert:
 python migration/migrate.py --run-id demo-run
 python migration/migrate.py --run-id demo-run
 ```
+
+## Error Scenario Demo
+
+Run the Phase 7 error demonstration:
+
+```powershell
+python migration/error_demo.py
+```
+
+Expected behavior:
+
+- A malformed flight row is logged and skipped.
+- A malformed reservation row is logged and skipped.
+- A SQL Server connection failure is logged.
+- A MongoDB connection failure is logged.
+
+The script exits normally because these failures are intentionally handled for demonstration.

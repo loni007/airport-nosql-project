@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from config import MongoConfig, SqlServerConfig
+from errors import DatabaseConnectionError
 
 
 def connect_sql(config: SqlServerConfig) -> Any:
@@ -14,7 +15,10 @@ def connect_sql(config: SqlServerConfig) -> Any:
     except ImportError as exc:
         raise RuntimeError("pyodbc is required. Run: python -m pip install -r requirements.txt") from exc
 
-    return pyodbc.connect(config.connection_string, timeout=10)
+    try:
+        return pyodbc.connect(config.connection_string, timeout=10)
+    except Exception as exc:
+        raise DatabaseConnectionError(f"SQL Server connection failed: {exc}") from exc
 
 
 def connect_mongo(config: MongoConfig) -> Any:
@@ -24,9 +28,12 @@ def connect_mongo(config: MongoConfig) -> Any:
     except ImportError as exc:
         raise RuntimeError("pymongo is required. Run: python -m pip install -r requirements.txt") from exc
 
-    client = MongoClient(config.uri, serverSelectionTimeoutMS=5000)
-    client.admin.command("ping")
-    return client
+    try:
+        client = MongoClient(config.uri, serverSelectionTimeoutMS=5000)
+        client.admin.command("ping")
+        return client
+    except Exception as exc:
+        raise DatabaseConnectionError(f"MongoDB connection failed: {exc}") from exc
 
 
 def fetch_source_counts(sql_connection: Any) -> dict[str, int]:

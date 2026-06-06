@@ -18,6 +18,8 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 - `mongodb/README.md`: MongoDB setup commands and index explanation.
 - `migration/migrate.py`: migration pipeline entry point.
 - `migration/README.md`: migration configuration and run instructions.
+- `migration/logger.py`: shared migration logger writing to console and `logs/migration.log`.
+- `migration/error_demo.py`: explicit malformed-record and connection-failure demo for Phase 7.
 
 ## Planned Workflow
 
