@@ -20,6 +20,8 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 - `migration/README.md`: migration configuration and run instructions.
 - `migration/logger.py`: shared migration logger writing to console and `logs/migration.log`.
 - `migration/error_demo.py`: explicit malformed-record and connection-failure demo for Phase 7.
+- `visualization/charts.py`: MongoDB-only Plotly chart generator.
+- `visualization/README.md`: chart generation and screenshot instructions.
 
 ## Planned Workflow
 
