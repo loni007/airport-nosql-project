@@ -22,6 +22,8 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 - `migration/error_demo.py`: explicit malformed-record and connection-failure demo for Phase 7.
 - `visualization/charts.py`: MongoDB-only Plotly chart generator.
 - `visualization/README.md`: chart generation and screenshot instructions.
+- `docker-compose.yml`: SQL Server, MongoDB, and Mongo Express services.
+- `docs/docker_setup.md`: Docker setup and screenshot instructions.
 
 ## Planned Workflow
 
@@ -31,6 +33,29 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 4. Implement idempotent migration with transformations.
 5. Add logging, error handling, validation, and visualizations.
 6. Complete Docker support and final report.
+
+## Docker Quick Start
+
+Start the database services:
+
+```powershell
+docker compose up -d
+docker compose ps
+```
+
+Load SQL Server data:
+
+```powershell
+sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd" -C -i sql/schema.sql
+sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd" -C -i sql/seed.sql
+sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd" -C -i sql/generated_seed.sql
+```
+
+Prepare MongoDB collections and indexes:
+
+```powershell
+python mongodb/setup_collections.py --mongo-uri mongodb://localhost:27017 --database airport_nosql
+```
 
 ## Course Deliverable Checklist
 
