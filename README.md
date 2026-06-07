@@ -24,6 +24,8 @@ Phase 1 is complete: relational design, MongoDB modeling strategy, and project a
 - `visualization/README.md`: chart generation and screenshot instructions.
 - `docker-compose.yml`: SQL Server, MongoDB, and Mongo Express services.
 - `docs/docker_setup.md`: Docker setup and screenshot instructions.
+- `docs/final_project_report.pdf`: final project report for submission.
+- `docs/final_project_report.md`: editable source for the final project report.
 
 ## Planned Workflow
 
