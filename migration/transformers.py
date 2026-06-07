@@ -196,3 +196,99 @@ def build_travel_agency_documents(agencies: Iterable[Row], reservations: Iterabl
             }
         )
     return documents
+def build_reservation_documents(
+    reservations: Iterable[Row],
+    clients: Iterable[Row],
+    tickets: Iterable[Row],
+    flights: Iterable[Row],
+    airlines: Iterable[Row],
+    agencies: Iterable[Row],
+) -> list[Row]:
+    client_by_id = {row["client_id"]: row for row in clients}
+    ticket_by_id = {row["ticket_id"]: row for row in tickets}
+    flight_by_id = {row["flight_id"]: row for row in flights}
+    airline_by_id = {row["airline_id"]: row for row in airlines}
+    agency_by_id = {row["agency_id"]: row for row in agencies}
+    documents = []
+
+    for reservation in reservations:
+        client = client_by_id.get(reservation["client_id"])
+        ticket = ticket_by_id.get(reservation["ticket_id"])
+        if not client or not ticket:
+            raise ValueError(f"reservation {reservation['reserve_id']} has missing client or ticket reference")
+
+        flight = flight_by_id.get(ticket["flight_id"])
+        if not flight:
+            raise ValueError(f"reservation {reservation['reserve_id']} has ticket with missing flight reference")
+
+        airline = airline_by_id.get(flight["airline_id"])
+        agency = agency_by_id.get(reservation.get("agency_id"))
+
+        documents.append(
+            {
+                "sql_reserve_id": reservation["reserve_id"],
+                "reserved_at": reservation["reserved_at"],
+                "payment_status": reservation["payment_status"],
+                "reservation_channel": reservation["reservation_channel"],
+                "client": {
+                    "sql_client_id": client["client_id"],
+                    "full_name": f"{client['first_name']} {client['last_name']}",
+                    "email": client["email"],
+                    "passport_number": client["passport_number"],
+                },
+                "ticket": {
+                    "sql_ticket_id": ticket["ticket_id"],
+                    "ticket_number": ticket["ticket_number"],
+                    "seat_number": ticket["seat_number"],
+                    "cabin_class": ticket["cabin_class"],
+                    "price": to_float(ticket["price"]),
+                    "currency": ticket["currency"],
+                },
+                "flight": {
+                    "sql_flight_id": flight["flight_id"],
+                    "flight_number": flight["flight_number"],
+                    "airline_name": airline["name"] if airline else None,
+                    "origin_airport": flight["origin_airport"],
+                    "destination_airport": flight["destination_airport"],
+                },
+                "agency": None
+                if agency is None
+                else {
+                    "sql_agency_id": agency["agency_id"],
+                    "name": agency["name"],
+                },
+            }
+        )
+    return documents
+
+
+def build_maintenance_documents(care_rows: Iterable[Row], airplanes: Iterable[Row], employers: Iterable[Row]) -> list[Row]:
+    airplane_by_id = {row["airplane_id"]: row for row in airplanes}
+    employer_by_id = {row["employer_id"]: row for row in employers}
+    documents = []
+
+    for care in care_rows:
+        airplane = airplane_by_id.get(care["airplane_id"])
+        employer = employer_by_id.get(care["employer_id"])
+        if not airplane or not employer:
+            raise ValueError(f"care record {care['care_id']} has missing airplane or employer reference")
+
+        documents.append(
+            {
+                "sql_care_id": care["care_id"],
+                "care_type": care["care_type"],
+                "care_date": care["care_date"],
+                "notes": care.get("notes"),
+                "cost": to_float(care["cost"]),
+                "airplane": {
+                    "sql_airplane_id": airplane["airplane_id"],
+                    "registration_number": airplane["registration_number"],
+                },
+                "employer": {
+                    "sql_employer_id": employer["employer_id"],
+                    "full_name": f"{employer['first_name']} {employer['last_name']}",
+                    "role": employer["role"],
+                },
+            }
+        )
+    return documents
