@@ -1,3 +1,13 @@
+"""
+Phase 6: MongoDB transformation helpers.
+
+Copy to:
+    migration/transformers.py
+
+These functions convert SQL Server result rows into MongoDB documents. They are
+written as pure functions so they can be tested without live databases.
+"""
+
 from __future__ import annotations
 
 from collections import defaultdict
@@ -196,6 +206,8 @@ def build_travel_agency_documents(agencies: Iterable[Row], reservations: Iterabl
             }
         )
     return documents
+
+
 def build_reservation_documents(
     reservations: Iterable[Row],
     clients: Iterable[Row],
