@@ -62,4 +62,4 @@ def fetch_source_counts(sql_connection: Any) -> dict[str, int]:
 def ensure_migration_run_indexes(database: Any) -> None:
     """Create indexes needed before migration run metadata is written."""
     database.migration_runs.create_index("run_id", name="uq_migration_runs_run_id", unique=True)
-    database.migration_runs.create_index("started_at", name="idx_migration_runs_started_at")
+    database.migration_runs.create_index([("started_at", -1)], name="idx_migration_runs_started_at")
